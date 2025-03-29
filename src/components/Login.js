@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Adjust URL as needed
-      const response = await axios.post('http://127.0.0.1:5000/login', { email, password });
+      const response = await axios.post(`${API_URL}/login`, { email, password });
       localStorage.setItem('token', response.data.token);
       window.location.href = '/'; 
 

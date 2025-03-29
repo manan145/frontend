@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function AnalysisForm({ refreshHistory }) {
   const [text, setText] = useState('');
@@ -10,7 +11,7 @@ function AnalysisForm({ refreshHistory }) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://127.0.0.1:5000/analyze',
+        `${API_URL}/analyze`,
         { text },
         { headers: { Authorization: `Bearer ${token}` } }
       );

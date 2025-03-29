@@ -6,6 +6,8 @@ import History from './History';
 import SentimentChart from './SentimentChart';
 import SentimentTrendChart from './SentimentTrendChart';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Dashboard() {
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ function Dashboard() {
   const fetchHistory = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://127.0.0.1:5000/history', {
+      const response = await axios.get(`${API_URL}/history`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setHistory(response.data);

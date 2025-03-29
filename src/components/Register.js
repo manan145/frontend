@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -13,9 +14,10 @@ function Register() {
     e.preventDefault();
     try {
       // Adjust URL as needed
-      await axios.post('http://127.0.0.1:5000/register', { name, email, password });
+      await axios.post(`${API_URL}/register`, { name, email, password });
       navigate('/login');
     } catch (err) {
+      console.log('API_URL:', process.env.REACT_APP_API_URL);
       console.error('Registration error:', err.response?.data);
       setError('Registration failed. Please try again.');
     }
